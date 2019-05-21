@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Sample API for weather by location.",
   "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jabernathy88/travel-weather-api.git"
+  },
   "scripts": {
     "dev": "nodemon --exec babel-node src/server.js ",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -29,6 +33,7 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.0",
     "pg": "^7.11.0",
+    "pg-native": "^3.0.0",
     "sequelize": "^5.8.6"
   }
 }
