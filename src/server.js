@@ -2,11 +2,28 @@ require('dotenv').config()
 import cors from 'cors'
 const express = require('express')
 const app = express()
+import Sequelize from 'sequelize';
 // const routes = require('./routes/index')
 
-import Sequelize from 'sequelize';
+// Heroku Postgres Client
+const { Client } = require('pg');
 
-// initialize db
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
+
+client.connect();
+
+client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  client.end();
+});
+
+// Sequelize ORM
 const sequelize = new Sequelize(
   process.env.DATABASE,
   process.env.DATABASE_USER,
