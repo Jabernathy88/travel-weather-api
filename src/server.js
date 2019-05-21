@@ -13,15 +13,23 @@ const client = new Client({
   ssl: true,
 });
 
-client.connect();
+// test client
+client.connect()
+  .then(() => {
+    console.log('PostgreSQL connection successful')
+  })
+  // catch client error
+  .catch(err => {
+    console.error('Unable to connect Postgres client:', err)
+  })
 
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
-});
+// client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+//   if (err) throw err;
+//   for (let row of res.rows) {
+//     console.log(JSON.stringify(row));
+//   }
+//   client.end();
+// });
 
 // Sequelize ORM
 const sequelize = new Sequelize(
@@ -37,11 +45,11 @@ const sequelize = new Sequelize(
 // test db connection
 sequelize.authenticate()
   .then(() => {
-    console.log('Postgres connection successful')
+    console.log('Sequelize connection successful')
   })
   // catch db error
   .catch(err => {
-    console.error('Unable to connect database:', err)
+    console.error('Unable to connect Sequelize to DB:', err)
   })
 
 // initialize app & modules
