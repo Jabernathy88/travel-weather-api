@@ -2,21 +2,7 @@ require('dotenv').config()
 const cors = require('cors')
 const express = require('express')
 const app = express()
-const Sequelize = require('sequelize');
-
-// connect db
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-  dialect:  'postgres',
-  protocol: 'postgres'
-})
-
-sequelize.authenticate()
-  .then(() => {
-    console.log('Sequelize has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to Sequelize:', err);
-  })
+import models, { sequelize } from './models'
 
 // const routes = require('./routes/index')
 
