@@ -25,5 +25,9 @@ Object.keys(models).forEach(key => {
   }
 })
 
-export { sequelize }
-export default models 
+const db = {
+  sequelize,
+  models
+}
+
+module.exports = db

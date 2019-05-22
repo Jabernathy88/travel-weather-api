@@ -1,4 +1,5 @@
-const models = require('../models')
+const db = require('../models')
+const models = db.models
 
 const createUsersWithMessages = async () => {
   await models.User.create(
@@ -13,7 +14,7 @@ const createUsersWithMessages = async () => {
     {
       include: [models.Message],
     },
-  );
+  )
 
   await models.User.create(
     {
@@ -30,7 +31,7 @@ const createUsersWithMessages = async () => {
     {
       include: [models.Message],
     },
-  );
-};
+  )
+}
 
-createUsersWithMessages();
+createUsersWithMessages()
