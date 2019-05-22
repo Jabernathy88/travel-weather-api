@@ -10,6 +10,14 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
   protocol: 'postgres'
 })
 
+sequelize.authenticate()
+  .then(() => {
+    console.log('Sequelize has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to Sequelize:', err);
+  })
+
 // const routes = require('./routes/index')
 
 // initialize app & modules
