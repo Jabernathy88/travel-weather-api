@@ -1,3 +1,5 @@
+const models = require('../models')
+
 const createUsersWithMessages = async () => {
   await models.User.create(
     {
