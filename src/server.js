@@ -19,7 +19,7 @@ app.get('/users', async (req, res) => {
     const users = await db.models.User.findAll(
       {
         include: [
-          {model: db.models.Message, as: 'Messages'}
+          {model: db.models.Message, as: 'messages'}
         ]
       }
     )
